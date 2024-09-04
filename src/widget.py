@@ -1,28 +1,28 @@
-from src.masks import get_mask_account, get_mask_card_number
+from src.masks import masked_account_num, masked_card_num
 
 
-def mask_account_card(number: str) -> str:
-    """Функция общей маскировки карты и счета """
+def mask_elements(element: str) -> str | None:
+    """Функция, маскирующая любой элемент,
+    как номер карты, так и номер счёта"""
+    if element[0] == "С":
+        for i in range(len(element)):
+            if element[i].isalpha():
+                continue
+            elif element[i].isdigit():
+                mask = masked_account_num(element[i:])
+                return f"Счет {mask}"
 
-    if len(number.split()[-1]) == 16:
-        new_number = get_mask_card_number(number.split()[-1])
-        result = f"{number[:-16]}{new_number}"
-        return result
-    elif len(number.split()[-1]) == 20:
-        new_number = get_mask_account(number.split()[-1])
-        result = f"{number[:-20]}{new_number}"
-        return result
-
-
-print(mask_account_card("Visa Platinum 8990922113665229"))
-print(mask_account_card("Счет 35383033474447895560"))
-
-
-def get_data(date: str) -> str:
-    """Функция преобразования даты"""
-    return f"{date[8:10]}.{date[5:7]}.{date[0:4]}"
-
-
-print(get_data("2024-03-11T02:26:18.671407"))
+    else:
+        for i in range(len(element)):
+            if element[i].isalpha():
+                continue
+            elif element[i].isdigit():
+                mask = masked_card_num(element[i:])
+                return f"{element[:-16]}{mask}"
+    return None
 
 
+def get_date(date: str) -> str:
+    """функция получает дату из полученных данных, и выводит её"""
+    day, month, year = date[8:10], date[5:7], date[:4]
+    return f'{day}.{month}.{year}'

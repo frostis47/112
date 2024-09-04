@@ -1,21 +1,28 @@
-def get_mask_card_number(card_number: str) -> str:
-
-    """Функцию маскировки номера банковской карты"""
-    return f"{card_number[:4]} {card_number[2:4]}{"*" * 2} {"*" * 4} {card_number[12:]}"
 
 
-def get_mask_account(score_number: str):
-    """Функцию маскировки номера банковского счета """
-    return f"{"*" * 2} {score_number[16:]}"
+import logging
+
+logger = logging.getLogger("masks")
+file_handler = logging.FileHandler("loggers_info.txt")
+file_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
+logger.setLevel(logging.DEBUG)
 
 
+def masked_card_num(num: str) -> str:
+    """ функция принимает номер карты и возвращает замаскированный номер
+    @rtype: object """
+    logger.info(f"start masked_card_num {num}")
+    number = 4
+    result = num[:number] + " " + num[number: number + 2] + "** ****" + " " + num[number + 8:]
+    logger.info(f"mask {result}")
+    return result
 
 
-
-
-
-
-
-
-
-
+def masked_account_num(num: str) -> str:
+    """ функция принимает номер счёта и возвращает замаскированный номер """
+    logger.info(f"start masked_account_num {num}")
+    result = "**" + num[-4:]
+    logger.info(f"mask {result}")
+    return result
