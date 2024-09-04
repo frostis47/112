@@ -11,8 +11,8 @@ logger.setLevel(logging.DEBUG)
 
 
 def masked_card_num(num: str) -> str:
-    """функция принимает номер карты и возвращает замаскированный номер
-    @rtype: object"""
+    """ функция принимает номер карты и возвращает замаскированный номер
+    @rtype: object """
     logger.info(f"start masked_card_num {num}")
     number = 4
     result = num[:number] + " " + num[number: number + 2] + "** ****" + " " + num[number + 8:]
@@ -21,7 +21,7 @@ def masked_card_num(num: str) -> str:
 
 
 def masked_account_num(num: str) -> str:
-    """функция принимает номер счёта и возвращает замаскированный номер"""
+    """ функция принимает номер счёта и возвращает замаскированный номер """
     logger.info(f"start masked_account_num {num}")
     result = "**" + num[-4:]
     logger.info(f"mask {result}")
