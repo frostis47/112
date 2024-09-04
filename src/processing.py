@@ -3,7 +3,8 @@ from typing import List, Dict, Any
 
 def filter_by_state(data: List[Dict[str, Any]], state: str = 'EXECUTED') -> List[Dict[str, Any]]:
     """
-Функция фильтрует данные по указанному состоянию список словарей с данными состояние, по которому необходимо отфильтровать данные (по умолчанию 'EXECUTED')
+Функция фильтрует данные по указанному состоянию список словарей с данными состояние,
+по которому необходимо отфильтровать данные (по умолчанию 'EXECUTED')
     """
     return [d for d in data if d.get('state') == state]
 
