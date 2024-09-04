@@ -2,7 +2,6 @@ import pytest
 
 from src.widget import get_date, mask_elements
 
-
 @pytest.mark.parametrize(
     "n, expected_result",
     [
