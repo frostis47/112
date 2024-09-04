@@ -1,7 +1,16 @@
-from src.masks import masked_account_num, masked_card_num
+from src import masks
 
 
-def mask_elements(element: str) -> str | None:
+def mask_account_number():
+    pass
+
+
+def masks_card_number():
+    pass
+
+
+
+def mask_elements(element: str, mask=None) -> str | None:
     """Функция, маскирующая любой элемент,
     как номер карты, так и номер счёта"""
     if element[0] == "С":
@@ -9,15 +18,15 @@ def mask_elements(element: str) -> str | None:
             if element[i].isalpha():
                 continue
             elif element[i].isdigit():
-                mask = masked_account_num(element[i:])
-                return f"Счет {mask}"
+                mask_account_number()
+                return f"Счет {masks}"
 
     else:
         for i in range(len(element)):
             if element[i].isalpha():
                 continue
             elif element[i].isdigit():
-                mask = masked_card_num(element[i:])
+                masks_card_number()
                 return f"{element[:-16]}{mask}"
     return None
 

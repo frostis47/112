@@ -1,6 +1,5 @@
 import pytest
 
-from src.widget import get_date, mask_elements
 
 @pytest.mark.parametrize(
     "n, expected_result",
@@ -10,8 +9,7 @@ from src.widget import get_date, mask_elements
     ],
 )
 def test_mask_elements(n: str, expected_result: str) -> None:
-    assert mask_elements(n) == expected_result
-
+    assert test_mask_elements(n) == expected_result
 
 
 def test_get_date() -> None:
