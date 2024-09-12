@@ -52,7 +52,7 @@ state .
 4.6 def test_sort_by_date(n, expected):
     assert sort_by_date(n) == expected
 5.  Модуль generators
-5.1 Создайте функцию 
+5.1 Создает функцию 
 filter_by_currency, которая принимает на вход список словарей, представляющих транзакции.
 5.2 def test_filter_by_currency():
     assert next(filter_by_currency(transactions, "RUB")) == 873106923
