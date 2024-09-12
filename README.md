@@ -51,3 +51,17 @@ state .
 4.5 Тестирование сортировки списка словарей по датам в порядке убывания и возрастания.
 4.6 def test_sort_by_date(n, expected):
     assert sort_by_date(n) == expected
+5.  Модуль generators
+5.1 Создайте функцию 
+filter_by_currency, которая принимает на вход список словарей, представляющих транзакции.
+5.2 def test_filter_by_currency():
+    assert next(filter_by_currency(transactions, "RUB")) == 873106923
+5.3 Генератор 
+transaction_descriptions оторый принимает список словарей с транзакциями и возвращает описание каждой операции по очереди.
+5.4 def test_transaction_descriptions():
+    assert next(transaction_descriptions(transactions)) == "Перевод организации"
+5.5 Генератор 
+card_number_generator который выдает номера банковских карт в формате 
+XXXX XXXX XXXX XXXX
+5.6 def test_card_number_generator():
+    assert next(card_number_generator(1, 1)) == "0000 0000 0000 0001"
