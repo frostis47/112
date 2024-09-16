@@ -26,3 +26,11 @@ def masked_account_num(num: str) -> str:
     result = "**" + num[-4:]
     logger.info(f"mask {result}")
     return result
+
+
+def get_mask_card_number():
+    return None
+
+
+def get_mask_account_number():
+    return None
