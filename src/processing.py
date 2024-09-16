@@ -13,6 +13,3 @@ def sort_by_date(date_list: list, reverse_list: bool = True) -> list | bool:
     """Return filtered list by date"""
     sorted_list = sorted(date_list, key=lambda date_dict: date_dict.get("date"), reverse=reverse_list)
     return sorted_list
-
-
-

@@ -1,5 +1,4 @@
 
-
 import logging
 
 logger = logging.getLogger("masks")
@@ -10,7 +9,7 @@ logger.addHandler(file_handler)
 logger.setLevel(logging.DEBUG)
 
 
-def masked_card_num(num: str) -> str:
+def get_mask_card_number(num: str) -> str:
     """ функция принимает номер карты и возвращает замаскированный номер
     @rtype: object """
     logger.info(f"start masked_card_num {num}")
@@ -20,17 +19,9 @@ def masked_card_num(num: str) -> str:
     return result
 
 
-def masked_account_num(num: str) -> str:
+def get_mask_account_number(num: str) -> str:
     """ функция принимает номер счёта и возвращает замаскированный номер """
     logger.info(f"start masked_account_num {num}")
     result = "**" + num[-4:]
     logger.info(f"mask {result}")
     return result
-
-
-def get_mask_card_number():
-    return None
-
-
-def get_mask_account_number():
-    return None
