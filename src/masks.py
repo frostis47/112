@@ -10,7 +10,7 @@ logger.setLevel(logging.DEBUG)
 
 
 def get_mask_card_number(num: str) -> str:
-    """ функция принимает номер карты и возвращает замаскированный номер
+    """ Функция принимает номер карты и возвращает замаскированный номер
     @rtype: object """
     logger.info(f"start masked_card_num {num}")
     number = 4
@@ -18,10 +18,18 @@ def get_mask_card_number(num: str) -> str:
     logger.info(f"mask {result}")
     return result
 
+if __name__ == '__main__':
+    print(get_mask_card_number("8990922113665229"))
+
+
 
 def get_mask_account_number(num: str) -> str:
-    """ функция принимает номер счёта и возвращает замаскированный номер """
+    """ Функция принимает номер счёта и возвращает замаскированный номер """
     logger.info(f"start masked_account_num {num}")
     result = "**" + num[-4:]
     logger.info(f"mask {result}")
     return result
+
+
+if __name__ == '__main__':
+    print(get_mask_account_number("73654108430135874305"))
