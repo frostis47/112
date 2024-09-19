@@ -1,29 +1,30 @@
 import json
-from json import JSONDecodeError
-from typing import Any
+import logging
 
-from src.external_api import currency_conversion
+logger = logging.getLogger("utils")
+file_handler = logging.FileHandler("../logs/utils.log", encoding="utf-8")
+f_fo = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
+file_handler.setFormatter(f_fo)
+logger.addHandler(file_handler)
+logger.setLevel(logging.DEBUG)
 
 
-def financial_transactions(path: str) -> list:
-    """Функция принимает на вход путь до JSON-файла и возвращает список словарей с данными о финансовых транзакциях."""
+def get_operations_info(filename: str) -> list[dict]:
+    """Функция принимающая путь до файла и возвращающая python объект."""
     try:
-        with open(path, encoding="utf-8") as financial_file:
-            try:
-                transactions = json.load(financial_file)
-            except JSONDecodeError:
+        logger.info("Производиться поиск файла для чтения")
+        with open(filename, "r", encoding="utf8") as f:
+            data_info = json.load(f)
+            if type(data_info) is not list:
+                logger.error("Ошибка TypeError")
                 return []
-        if not isinstance(transactions, list):
-            return []
-        return transactions
-    except FileNotFoundError:
+    except FileNotFoundError as ex:
+        logger.error(f" Ошибка {ex} ")
         return []
-
-
-def transaction_amount(trans: dict, currency: str = "RUB") -> Any:
-    """Функция принимает на вход транзакцию и возвращает сумму транзакции в рублях"""
-    if trans["operationAmount"]["currency"]["code"] == currency:
-        amount = trans["operationAmount"]["amount"]
     else:
-        amount = currency_conversion(trans)
-    return amount
+        logger.info("Завершение работы")
+        return data_info
+
+
+if __name__ == "__main__":
+    print(get_operations_info(filename="../data/operations.json"))
