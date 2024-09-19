@@ -10,3 +10,11 @@
 2024-09-19 12:52:04,220 masks.py INFO: mask 8990 92** **** 5229
 2024-09-19 12:52:04,220 masks.py INFO: start masked_account_num 73654108430135874305
 2024-09-19 12:52:04,220 masks.py INFO: mask **4305
+2024-09-19 13:04:24,277 masks.py INFO: start masked_card_num 8990922113665229
+2024-09-19 13:04:24,277 masks.py INFO: mask 8990 92** **** 5229
+2024-09-19 13:04:24,277 masks.py INFO: start masked_account_num 73654108430135874305
+2024-09-19 13:04:24,277 masks.py INFO: mask **4305
+2024-09-19 14:34:00,132 masks.py INFO: start masked_card_num 8990922113665229
+2024-09-19 14:34:00,132 masks.py INFO: mask 8990 92** **** 5229
+2024-09-19 14:34:00,133 masks.py INFO: start masked_account_num 73654108430135874305
+2024-09-19 14:34:00,133 masks.py INFO: mask **4305
