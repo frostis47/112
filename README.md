@@ -49,3 +49,10 @@ git@github.com:frostis47/112.git
 5.4 def test_transaction_descriptions(): Assert next(transaction_descriptions(transactions)) == "Перевод организации" 
 5.5 Генератор card_number_generator, который выдает номера банковских карт в формате XXXX XXXX XXXX XXXX 
 5.6 def test_card_number_generator(): Assert next(card_number_generator(1, 1)) == "0000 0000 0000 0001"
+
+6. Произведено тестирование для модуля external_api.py
+   с помошью "mock и path"
+def all_amount_rub_convert(transaction: Any) -> float:
+6.1 Произведено тестирование модуля untils.py
+def get_info_json_object(capsys):
+def test_info_json_emty(capsys):
