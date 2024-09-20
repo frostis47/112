@@ -9,7 +9,6 @@ def masks_card_number():
     pass
 
 
-
 def mask_elements(element: str, mask=None) -> str | None:
     """Функция, маскирующая любой элемент,
     как номер карты, так и номер счёта"""
@@ -32,6 +31,6 @@ def mask_elements(element: str, mask=None) -> str | None:
 
 
 def get_date(date: str) -> str:
-    """функция получает дату из полученных данных, и выводит её"""
+    """Функция получает дату из полученных данных и выводит её"""
     day, month, year = date[8:10], date[5:7], date[:4]
     return f'{day}.{month}.{year}'

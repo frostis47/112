@@ -1,8 +1,7 @@
-
 import logging
 
 logger = logging.getLogger("masks")
-file_handler = logging.FileHandler("loggers_info.txt")
+file_handler = logging.FileHandler('../logs/masks.log', encoding='utf-8')
 file_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
@@ -18,9 +17,9 @@ def get_mask_card_number(num: str) -> str:
     logger.info(f"mask {result}")
     return result
 
+
 if __name__ == '__main__':
     print(get_mask_card_number("8990922113665229"))
-
 
 
 def get_mask_account_number(num: str) -> str:
