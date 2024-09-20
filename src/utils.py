@@ -21,6 +21,9 @@ def get_operations_info(filename: str) -> list[dict]:
     except FileNotFoundError as ex:
         logger.error(f'Ошибка {ex}]')
         return []
+    except json.JSONDecodeError as ex:
+        logger.error(f'Ошибка JSON: {ex}')
+        return []
     else:
         logger.info(f'Завершение работы')
         return data_info
