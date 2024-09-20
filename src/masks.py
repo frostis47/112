@@ -1,4 +1,3 @@
-
 import logging
 
 logger = logging.getLogger("masks")
@@ -18,9 +17,9 @@ def get_mask_card_number(num: str) -> str:
     logger.info(f"mask {result}")
     return result
 
+
 if __name__ == '__main__':
     print(get_mask_card_number("8990922113665229"))
-
 
 
 def get_mask_account_number(num: str) -> str:

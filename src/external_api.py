@@ -31,7 +31,6 @@ def all_amount_rub_convert(transaction: Any) -> float:
         if currency == "RUB":
             return amount
 
-
         API_KEY = os.getenv("API_KEY")
         url = f"https://api.apilayer.com/exchangerates_data/latest?base={currency}&symbols=RUB"
         headers = {"apikey": API_KEY}
