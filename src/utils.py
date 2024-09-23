@@ -1,80 +1,102 @@
-import os
-import logging
 import json
+import logging
 import pandas as pd
 
-log_directory = '../logs'
-if not os.path.exists(log_directory):
-    os.makedirs(log_directory)
-
-file_handler = logging.FileHandler(os.path.join(log_directory, 'utils.log'), encoding='utf-8')
-logging.basicConfig(level=logging.INFO, handlers=[file_handler])
-
-logger = logging.getLogger('utils')
-file_handler = logging.FileHandler('../logs/utils.log', encoding='utf-8')
-file_formatter = logging.Formatter('%(asctime)s %(filename)s %(levelname)s: %(message)s')
-file_handler.setFormatter(file_formatter)
-logger.addHandler(file_handler)
+logger = logging.getLogger("utils")
+f_fo = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
 logger.setLevel(logging.DEBUG)
 
 
-def get_operations_info(filename: str) -> list[dict]:
-    """ Функция принимающая путь до файла и возвращающая python объект """
-    try:
-        logger.info(f'Производиться поиск файла для чтения')
-        with open(filename, 'r', encoding='utf8') as f:
-            data_info = json.load(f)
-            if type(data_info) is not list:
-                logger.error(f'Ошибка TypeError')
-                return []
-    except FileNotFoundError as ex:
-        logger.error(f'Ошибка {ex}')
-        return []
-    except json.JSONDecodeError as ex:
-        logger.error(f'Ошибка JSON: {ex}')
-        return []
-    else:
-        logger.info(f'Завершение работы')
-        return data_info
-
-
-def get_info_transactions():
-    pass
-
-
-def get_info_transactions_csv(filename: str) -> list[dict]:
-    """ Функция для чтения данных из CSV файла и возвращения их в виде списка словарей.
-    @rtype: object
+def get_info_transactions(path_file: str) -> list[dict]:
+    """
+    Функция принимает путь до файла и возвращает операции в исходном файле
+    в формате list[dict]
     """
     try:
-        logger.info(f'Чтение данных из файла {filename}')
-        data_info = pd.read_csv(filename).to_dict(orient='records')
-        return data_info
-    except FileNotFoundError as ex:
-        logger.error(f'Ошибка {ex}')
-        return []
-    except Exception as ex:
-        logger.error(f'Ошибка при чтении файла: {ex}')
+        logger.info("Открываем файл...")
+
+        with open(path_file, encoding="utf-8") as file:
+            try:
+                file_dict = json.load(file)
+                logger.info("смотрим содержимое файла, формат list()")
+
+                if type(file_dict) is not list:
+                    logger.warning("файл не формата list()")
+                    logger.info("Завершение работы")
+                    return []
+
+                logger.info("файл корректный, возвращаем содержимое")
+                logger.info("Завершение работы")
+                return file_dict
+
+            except json.JSONDecodeError:
+                logger.warning("файл не может быть прочитан, неверный формат")
+                logger.info("Завершение работы")
+                return []
+
+    except FileNotFoundError:
+        logger.warning("файл не найден, неверный путь до файла")
+        logger.info("Завершение работы")
         return []
 
 
-def get_info_transactions_xlsx(filename: str) -> list[dict]:
-    """ Функция для чтения данных из XLSX файла и возвращения их в виде списка словарей. """
+def get_info_transactions_csv(path_file: str) -> list[dict] | list:
+    """
+    Функция принимает путь до файла и возвращает операции в исходном файле
+    в формате list[dict]
+    """
     try:
-        logger.info(f'Чтение данных из файла {filename}')
-        data_info = pd.read_excel(filename).to_dict(orient='records')
-        return data_info
-    except FileNotFoundError as ex:
-        logger.error(f'Ошибка {ex}')
+        logger.info("Открываем файл...")
+
+        with open(path_file, encoding="utf-8") as file:
+            try:
+                file_dict = pd.read_csv(file, delimiter=";")
+                logger.info("смотрим содержимое файла, формат pd.DataFrame")
+
+                if type(file_dict) is not pd.DataFrame:
+                    logger.warning("файл не формата pd.DataFrame")
+                    logger.info("Завершение работы")
+                    return []
+
+                logger.info("файл корректный, возвращаем содержимое")
+                logger.info("Завершение работы")
+                return file_dict.to_dict(orient="records")
+            except json.JSONDecodeError:
+                logger.warning("файл не может быть прочитан, неверный формат")
+                logger.info("Завершение работы")
+                return []
+
+    except FileNotFoundError:
+        logger.warning("файл не найден, неверный путь до файла")
+        logger.info("Завершение работы")
         return []
-    except Exception as ex:
-        logger.error(f'Ошибка при чтении файла: {ex}')
+
+
+def get_info_transactions_xlsx(path_file: str) -> list[dict] | list:
+    """
+    Функция принимает путь до файла и возвращает операции в исходном файле
+    в формате list[dict]
+    """
+    try:
+        logger.info("Открываем файл...")
+
+        file_dict = pd.read_excel(path_file, index_col=0)
+        logger.info("смотрим содержимое файла, формат pd.DataFrame")
+
+        if type(file_dict) is not pd.DataFrame:
+            logger.warning("файл не формата pd.DataFrame")
+            logger.info("Завершение работы")
+            return []
+
+        logger.info("файл корректный, возвращаем содержимое")
+        logger.info("Завершение работы")
+        return file_dict.to_dict(orient="records")
+    except json.JSONDecodeError:
+        logger.warning("файл не может быть прочитан, неверный формат")
+        logger.info("Завершение работы")
         return []
 
-
-if __name__ == '__main__':
-    print(get_operations_info(filename='../data/operations.json'))
-
-
-    def get_info_transactions():
-        pass
+    except FileNotFoundError:
+        logger.warning("файл не найден, неверный путь до файла")
+        logger.info("Завершение работы")
+        return []

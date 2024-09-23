@@ -1,5 +1,4 @@
 from src.funcional import find_transactions
-from collections.abc import Iterator
 from src.generators import filter_by_currency
 from src.processing import filter_by_state, sort_by_date
 from src.utils import (get_info_transactions, get_info_transactions_csv,
@@ -7,9 +6,9 @@ from src.utils import (get_info_transactions, get_info_transactions_csv,
 from src.widget import get_data, mask_account_card
 
 
+# noinspection PyArgumentList
 def main() -> str:
-    global result
-    greeting: str = """Привет!
+    greeting = """Привет!
 Добро пожаловать в программу работы с банковскими транзакциями.
 Выберите необходимый пункт меню:\n
 1. Получить информацию о транзакциях из JSON-файла
@@ -76,7 +75,7 @@ def main() -> str:
                 elif input_user_ascending == "по возрастанию":
                     result = sort_by_date(result, False)
 
-    next_choice_rub = """\nВыводить только рублевые транзакции? Да/Нет"""
+    next_choice_rub = """\nВыводить только рублевые тразакции? Да/Нет"""
     input_user_rub = input(f"{next_choice_rub}\n").lower()
     while input_user_rub not in ["да", "нет"]:
         print("\nВвели некорректную сортировку\nПопробуйте еще раз:")
@@ -108,7 +107,7 @@ def main() -> str:
         return "Не найдено ни одной транзакции, подходящей под ваши условия фильтрации"
     else:
         for i in result:
-            data = get_data()
+            data = get_data(i["date"])
             description = i["description"]
             from_ = mask_account_card(i.get("from", ""))
             to_ = mask_account_card(i.get("to", ""))

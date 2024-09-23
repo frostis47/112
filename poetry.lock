@@ -217,6 +217,16 @@ files = [
 ]
 
 [[package]]
+name = "greeting"
+version = "1.0.1"
+description = "Say hello to someone"
+optional = false
+python-versions = "*"
+files = [
+    {file = "Greeting-1.0.1.zip", hash = "sha256:7daab0fe329b8859def4356147d989ec3a83f93caecdf1d108800d2c6c8f40db"},
+]
+
+[[package]]
 name = "idna"
 version = "3.10"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -515,4 +525,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "7a7d3224b9fa8271ea97430ef0f63237d18f6d116ac7172e72c8abf826ca562a"
+content-hash = "e377ee08c0562f413dad820f760078739413c1f447f243d3c68569dffe577324"
