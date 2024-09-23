@@ -1,7 +1,13 @@
-from src import masks
 
+# В src/widget.py
+def mask_account_card():
+    # Ваша реализация
+    pass
 
-def mask_account_number():
+def some_function():
+    from src.utils import get_date
+
+def mask_account_card():
     pass
 
 
@@ -34,3 +40,8 @@ def get_date(date: str) -> str:
     """Функция получает дату из полученных данных и выводит её"""
     day, month, year = date[8:10], date[5:7], date[:4]
     return f'{day}.{month}.{year}'
+
+
+def get_data():
+    pass
+
