@@ -8,6 +8,7 @@ from src.widget import get_data, mask_account_card
 
 # noinspection PyArgumentList
 def main() -> str:
+    global result
     greeting = """Привет!
 Добро пожаловать в программу работы с банковскими транзакциями.
 Выберите необходимый пункт меню:\n
@@ -110,7 +111,7 @@ def main() -> str:
             data = get_data(i["date"])
             description = i["description"]
             from_ = mask_account_card(i.get("from", ""))
-            to_ = mask_account_card(i.get("to", ""))
+            to_ = (mask_account_card(i.get("to", "")))
             amount = i["operationAmount"]["amount"]
             name = i["operationAmount"]["currency"]["name"]
 

@@ -56,3 +56,8 @@ def all_amount_rub_convert(transaction: Any) -> float:
 6.1 Произведено тестирование модуля untils.py
 def get_info_json_object(capsys):
 def test_info_json_emty(capsys):
+7. Функция принятия информацй с помощью JSON-файла
+Функция принятия информацй с помощью Excel-файла
+Функция принятия информацй с помощью CSV-файла
+Функция принятия значение в "USD", "EUR" обращение через API и возвращение в рублиях
+8. Произведено тестирование модуля untils.py

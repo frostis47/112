@@ -32,11 +32,11 @@ def test_log_console(capsys):
 
 def test_log_file_raise():
     @log(filename="mylog.txt")
-    def example_function(x, y):
+    def example_function():
         raise TypeError("Что-то пошло не так")
 
     with pytest.raises(TypeError, match="Что-то пошло не так"):
-        example_function(5, 100)
+        example_function()
 
     with open(os.path.join(r"logs", "mylog.txt"), "rt") as file:
         for line in file:
@@ -47,11 +47,11 @@ def test_log_file_raise():
 
 def test_log_console_raise(capsys):
     @log()
-    def example_function(x, y):
+    def example_function():
         raise ValueError("Что-то пошло не так")
 
     with pytest.raises(ValueError, match="Что-то пошло не так"):
-        example_function(5, 100)
+        example_function()
 
     captured = capsys.readouterr()
 
