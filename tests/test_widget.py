@@ -13,4 +13,4 @@ def test_mask_elements(n: str, expected_result: str) -> None:
 
 
 def test_get_date() -> None:
-    assert test_get_date("2018-07-11T02:26:18.671407") == "11.07.2018"
+    assert test_get_date() == "11.07.2018"

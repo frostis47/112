@@ -1,11 +1,12 @@
-
 # В src/widget.py
 def mask_account_card():
     # Ваша реализация
     pass
 
+
 def some_function():
-    from src.utils import get_date
+    pass
+
 
 def mask_account_card():
     pass
@@ -44,4 +45,3 @@ def get_date(date: str) -> str:
 
 def get_data():
     pass
-
