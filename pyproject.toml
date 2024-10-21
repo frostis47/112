@@ -12,6 +12,9 @@ requests = "^2.32.3"
 python-dotenv = "^1.0.1"
 transactions = "^0.2.0"
 greeting = "^1.0.1"
+yfinance = "^0.2.44"
+freezegun = "^1.5.1"
+product = "^0.1.1.1"
 
 
 [tool.poetry.group.lint.dependencies]
