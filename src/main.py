@@ -63,5 +63,5 @@ def main(date: str, data_frame: pd.DataFrame):
 
 
 if __name__ == "__main__":
-    date_str = input("Введите дату в формате: YYYY-MM-DD HH:MM:SS: ")
+    date_str: str = input("Введите дату в формате: YYYY-MM-DD HH:MM:SS: ")
     print(main(date_str, df))
